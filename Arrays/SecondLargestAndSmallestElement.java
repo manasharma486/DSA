@@ -1,60 +1,47 @@
 
 public class SecondLargestAndSmallestElement {
 
-    static int secondLargest(int[] arr) {
-
-        int max = arr[0];
-        int secondMax = arr[1];
-
-        for (int i = 1; i < arr.length; i++) {
-
-            if (max < arr[i]) {
-
-                secondMax = max;
-                max = arr[i];
-
-            }
-
-            else if (max < arr[i] && arr[i] != max) {
-
-                secondMax = Integer.max(arr[i], secondMax);
-            }
-
-        }
-
-        return secondMax;
-
-    }
-
-    static int secondSmallest(int[] arr) {
-
-        int min = Integer.MAX_VALUE;
-        int secondMin = Integer.MAX_VALUE;
-
-        for (int i = 0; i < arr.length; i++) {
-
-            if (arr[i] < min) {
-
-                secondMin = min;
-                min = arr[i];
-
-            }
-
-            else if (arr[i] < min && arr[i] != min) {
-
-                secondMin = Integer.min(secondMin, arr[i]);
-            }
-
-        }
-
-        return secondMin;
-    }
+    
+    
 
     public static void main(String[] args) {
 
-        int arr[] = { 28, 35, 2, 1, 3 };
+        int arr[] = { 5,1,4 };
 
         System.out.println(secondLargest(arr) + " " + secondSmallest(arr));
 
     }
+
+    private static int secondSmallest(int[] arr) {
+        // TODO Auto-generated method stub
+        int min = Integer.MAX_VALUE ;
+        int secondMin = -1 ;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min){
+                secondMin = min ;
+                min = arr[i] ;
+            }
+            else if (arr[i] < secondMin && arr[i] != min )
+                secondMin = arr[i] ;
+        }
+        return secondMin;
+    }
+
+    private static int secondLargest(int[] arr) {
+        // TODO Auto-generated method stub
+        int max = Integer.MIN_VALUE ;
+        int secondMax = -1 ;
+        for (int i = 0; i < arr.length; i++) {
+            
+            if (max < arr[i]){
+                secondMax = max;
+                max  = arr[i];
+                
+            }
+            else if (arr[i] > secondMax && arr[i] != max)
+                secondMax = arr[i];
+        }
+        return secondMax ;
+    }
 }
+
