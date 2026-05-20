@@ -1,6 +1,7 @@
 # Compiled java classes
 *.class
-
+input.txt
+output.txt
 #logs
 *.log
 
