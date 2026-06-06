@@ -1,5 +1,4 @@
 
-
 public class UpperBoundAlgo {
     public static void main(String[] args) {
         int[] arr =  {3,5,8, 9,15,19} ;
@@ -23,5 +22,7 @@ public class UpperBoundAlgo {
         }
 
         System.out.println(ub);
+
     }
 }
+
