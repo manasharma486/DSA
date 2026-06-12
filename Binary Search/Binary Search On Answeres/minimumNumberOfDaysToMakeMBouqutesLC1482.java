@@ -9,6 +9,10 @@ public class minimumNumberOfDaysToMakeMBouqutesLC1482 {
 
         int ans = -1 ;
 
+        // if (m*k > bloomDay.length) {
+        //    return -1 ;
+        // }
+
         int low = minElement(bloomDay);
         int high = maxElement(bloomDay);
 
