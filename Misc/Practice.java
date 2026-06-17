@@ -1,78 +1,76 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Practice {
     
   public static void main(String[] args) {
-     
-   int [] arr = {1,0,-1,0,-2,2};
-   int target =0 ;
     
-   List<List<Integer>>ans = new ArrayList<>();
+    int [] arr = {12, 34, 67, 90};
+    int k = 2;
 
+    int low = max(arr) ;
+    int high = sum(arr);
+   
+    int ans = -1;
 
-   Arrays.sort(arr);
+    while(low <= high){
+      int mid = low + (high-low)/2;
 
-   for (int i = 0; i < arr.length; i++) {
+      if (numberofStudentsNeededInorderToholdthebooks(arr, mid) <= k){
+        ans = mid;
+        high = mid-1;
+      }
 
-    if (i > 0  && arr[i] == arr[i-1]) {
-      continue ;
+      else{
+        low = mid + 1 ;
+      }
     }
 
 
-      for (int j = i+1; j < arr.length; j++) {
+    System.out.println(ans);
 
-        if (j > i +1 && arr[j] == arr[j-1]) {
-          continue ;
-        }
-        
-        int left = j+1 ;
-
-        int right  = arr.length-1 ;
-
-
-        while(left < right) {
-          int sum = arr[i] + arr[j] +arr[left] +arr[right] ;
-
-          if (sum < target) {
-            left++ ;
-          }
-
-          else if (sum > target) {
-            right -- ;
-          }
-
-          else {
-            List<Integer>temp = new ArrayList<>() ;
-            temp.add(arr[i]);
-            temp.add(arr[j]);
-            temp.add(arr[left]);
-            temp.add(arr[right]);
-
-            ans.add(temp);
-            left++ ;
-            right-- ;
-
-            while(left<right && arr[left] == arr[left-1]) {
-              left++ ;
-            }
-            while(left < right && arr[right] == arr[right+1]){
-              right-- ; 
-            }
-          }
-        }
-      }
-   }
-
-
-   for (List<Integer> list : ans) {
-      System.out.println(list);
-   }
-
+    
   }
 
+  private static int max(int[]arr ){
+    int max= Integer.MIN_VALUE;
+    for (int i : arr) {
+      if (max < i) {
+        max = i;
+      }
+    }
 
+    return max;
+  }
+
+  private static int sum(int[] arr){
+    int sum = 0 ;
+
+    for (int i = 0; i < arr.length; i++) {
+      sum+= arr[i];
+    }
+    return sum;
+  }
+
+  private static int numberofStudentsNeededInorderToholdthebooks(int[] arr , int maxPages){
+
+    int sum = arr[0];
+    int studCount = 1 ;
+
+    for (int i = 1; i < arr.length; i++) {
+      sum+=arr[i];
+
+      if (sum > maxPages){
+        sum= arr[i];
+        studCount++ ;
+      }
+    }
+  
+
+
+    return studCount;
+  }
+
+  
+
+  
 }
