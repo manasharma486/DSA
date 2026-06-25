@@ -40,5 +40,23 @@ public class LinkedListUtils {
         }
 
         return count;
-    } 
+    }
+
+    public static <T> Node<T> copy (Node<T> head){
+        Node<T> iterator1 = head;
+        Node<T> copyHead = new Node<T>(iterator1.data);
+        Node<T> iterator2 = copyHead;
+
+        iterator1=iterator1.next;
+
+        while(iterator1 != null){
+            Node<T> temp = new Node<T>(iterator1.data);
+            iterator2.next = temp;
+
+            iterator2 = iterator2.next;
+            iterator1 = iterator1.next;
+        }
+
+        return copyHead;
+    }
 }
