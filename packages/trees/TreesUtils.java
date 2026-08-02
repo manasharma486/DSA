@@ -111,4 +111,52 @@ public class TreesUtils {
         return 1 + Math.max(height(node.lefTNode),
                             height(node.righTNode));
     }
+
+    public static TNode stringToTree(String input) {
+
+    input = input.trim();
+
+    if (input.equals("[]"))
+        return null;
+
+    input = input.substring(1, input.length() - 1);
+
+    String[] values = input.split(",");
+
+    if (values.length == 0 || values[0].trim().equals("null"))
+        return null;
+
+    TNode root = new TNode(Integer.parseInt(values[0].trim()));
+
+    Queue<TNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    int i = 1;
+
+    while (!queue.isEmpty() && i < values.length) {
+
+        TNode current = queue.poll();
+
+        // Left Child
+        if (i < values.length && !values[i].trim().equals("null")) {
+
+            current.lefTNode = new TNode(Integer.parseInt(values[i].trim()));
+            queue.offer(current.lefTNode);
+        }
+
+        i++;
+
+        // Right Child
+        if (i < values.length && !values[i].trim().equals("null")) {
+
+            current.righTNode = new TNode(Integer.parseInt(values[i].trim()));
+            queue.offer(current.righTNode);
+        }
+
+        i++;
+    }
+
+    return root;
+}
+
 }
